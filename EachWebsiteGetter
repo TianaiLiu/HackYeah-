@@ -1,0 +1,17 @@
+from bs4 import BeautifulSoup
+import json
+
+file = open("./mlh.html", "rb")
+html = file.read()
+bs = BeautifulSoup(html, "html.parser")
+links = bs.find_all('a',class_="event-link")
+hrefs = []
+for link in links:
+    if 'href' in link.attrs:
+        hrefs.append(link['href'])
+    else:
+        print("No div with class 'row' found.")
+
+# with open('event_hrefs.json', 'w') as f:
+#     json.dump(hrefs, f)
+
